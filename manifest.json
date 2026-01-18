@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "ARD Mediathek Subtitle Translator",
-    "version": "1.0",
+    "version": "1.0.3",
     "description": "Translates ARD Mediathek subtitles to English inside the video player.",
     "permissions": [
         "storage"
