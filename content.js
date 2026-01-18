@@ -167,6 +167,22 @@ async function fetchTranslation(text) {
     }
 }
 
+// Function to update font size variable based on storage
+function updateStylesFromStorage() {
+    browser.storage.local.get({
+        fontSizeScale: 1.0
+    }).then(items => {
+        document.documentElement.style.setProperty('--font-size-scale', items.fontSizeScale);
+    });
+}
+
+// Listen for storage changes
+browser.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.fontSizeScale) {
+        document.documentElement.style.setProperty('--font-size-scale', changes.fontSizeScale.newValue);
+    }
+});
+
 // Navigation detection for SPA routing
 function setupNavigationDetection() {
     // Listen for browser navigation events
@@ -198,3 +214,6 @@ if (document.readyState === 'loading') {
 
 // Set up navigation detection
 setupNavigationDetection();
+
+// Initial sync of settings
+updateStylesFromStorage();

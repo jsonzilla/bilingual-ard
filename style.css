@@ -1,7 +1,14 @@
+.ardplayer-untertitel {
+    container-type: inline-size;
+}
+
 .translated-subtitle {
     color: yellow;
-    font-size: 30px;
+    /* Use clamp to stay within reasonable bounds, scaled by --font-size-scale */
+    font-size: clamp(14px, calc(4cqw * var(--font-size-scale, 1)), 60px); 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.7);
     margin-top: 5px;
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
 }
