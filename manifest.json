@@ -7,7 +7,7 @@
         "storage"
     ],
     "host_permissions": [
-        "https://translate.googleapis.com/"
+        "https://translate.googleapis.com/*"
     ],
     "content_scripts": [
         {
@@ -23,7 +23,6 @@
         }
     ],
     "background": {
-        "service_worker": "background.js",
         "scripts": [
             "background.js"
         ]
