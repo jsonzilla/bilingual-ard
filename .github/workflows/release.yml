@@ -3,7 +3,7 @@ name: Build and Release Extension
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   build:
@@ -12,14 +12,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build extension
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build and Sign extension
         run: |
-          zip -r bilingual-ard.xpi manifest.json background.js content.js style.css doc/ LICENSE README.md
+          npx web-ext sign \
+            --api-key="${{ secrets.AMO_JWT_ISSUER }}" \
+            --api-secret="${{ secrets.AMO_JWT_SECRET }}" \
+            --channel=unlisted
 
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: bilingual-ard.xpi
+          files: web-ext-artifacts/*.xpi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
