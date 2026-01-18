@@ -29,7 +29,8 @@
     },
     "browser_specific_settings": {
         "gecko": {
-            "id": "bilingual-ard@futurk.me"
+            "id": "bilingual-ard@jsonzilla.me",
+            "data_collection_permissions": false
         }
     }
 }
